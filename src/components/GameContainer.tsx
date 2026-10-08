@@ -128,12 +128,18 @@ export default function GameContainer() {
             clearGhostTimers()
             return
           }
-          if (Math.random() < 0.2) {
+          if (doorClosedRef.current) {
+            if (Math.random() < 0.25) {
+              clearGhostTimers()
+              ghostPositionRef.current = STAGE
+              setGhostPosition(STAGE)
+            }
+          } else {
             clearGhostTimers()
-            ghostPositionRef.current = STAGE
-            setGhostPosition(STAGE)
+            ghostPositionRef.current = DOOR
+            setGhostPosition(DOOR)
           }
-        }, 1000)
+        }, 1500)
       }, 2000)
     }
   }, [clearGhostTimers])
@@ -146,7 +152,7 @@ export default function GameContainer() {
     setDoorClosed(false)
 
     const currentGhost = ghostPositionRef.current
-    if (currentGhost === DOOR || currentGhost === WINDOW) {
+    if (currentGhost === DOOR) {
       triggerJumpscare()
     }
   }, [triggerJumpscare])

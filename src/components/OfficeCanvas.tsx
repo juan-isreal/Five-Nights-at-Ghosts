@@ -439,18 +439,27 @@ export default function OfficeCanvas({
       <color attach="background" args={['#050508']} />
       <fog attach="fog" args={['#050508', 8, 20]} />
 
-      {/* Ambient - very dark */}
-      <ambientLight intensity={0.04} color="#222244" />
+      {/* Ambient - dim but visible */}
+      <ambientLight intensity={0.18} color="#334466" />
+
+      {/* Office desk light - always on so player can see */}
+      <pointLight
+        position={[0, 1.5, 1]}
+        intensity={0.6}
+        distance={8}
+        decay={1.5}
+        color="#ffddaa"
+      />
 
       {/* Flashlight spotlight */}
       <Flashlight on={flashlightOn} target={flashlightTarget} />
 
-      {/* Subtle light from window */}
+      {/* Light from window */}
       <pointLight
         position={[3.5, 1.8, -0.3]}
-        intensity={0.15}
+        intensity={0.3}
         distance={6}
-        color="#3344aa"
+        color="#4466bb"
       />
 
       {/* Stage spotlight from CAM 1 area */}
@@ -458,8 +467,8 @@ export default function OfficeCanvas({
         position={[0, 3.5, -9]}
         angle={0.5}
         penumbra={0.6}
-        intensity={0.5}
-        distance={8}
+        intensity={1.2}
+        distance={10}
         decay={1.5}
         color="#aa88ff"
       />
